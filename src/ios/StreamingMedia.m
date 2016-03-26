@@ -237,7 +237,9 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
 -(void)doneButtonClick:(NSNotification*)notification{
 	[self cleanup];
 
-	CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:true];
+	// Note that I'm changing this so that false indicates the movie did not finish 
+	CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:false];
+	
 	[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 }
 
