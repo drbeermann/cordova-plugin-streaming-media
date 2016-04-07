@@ -173,6 +173,9 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
 
 	moviePlayer =  [[MPMoviePlayerController alloc] initWithContentURL:url];
 
+	NSError *error = nil;
+  [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+
 	// Listen for playback finishing
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(moviePlayBackDidFinish:)
@@ -239,7 +242,7 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
 
 	// Note that I'm changing this so that false indicates the movie did not finish 
 	CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:false];
-	
+
 	[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 }
 
